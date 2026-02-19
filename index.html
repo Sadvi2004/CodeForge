@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Rajdhani:wght@500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <title>CodeForge</title>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="logo"><span class="c1">CODE</span><span class="c3">FORGE</span></div>
+    <div class="topbar-actions">
+      <button class="btn btn-preview" onclick="openFS()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3" />
+          <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+          <path d="M3 16v3a2 2 0 0 0 2 2h3" />
+          <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
+        </svg>
+        <span class="btn-label">Full Preview</span>
+      </button>
+      <button class="btn btn-download" onclick="downloadZip()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        <span class="btn-label">Download ZIP</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- WORKSPACE -->
+  <div class="workspace">
+    <div class="editors-col">
+
+      <!-- HTML -->
+      <div class="editor-block active" id="block-html">
+        <div class="editor-label label-html">
+          <svg width="16" height="16" viewBox="0 0 512 512">
+            <path fill="#e44d26" d="M107.6 470.9L74.3 100h363.5l-33.4 370.8L255.9 512z" />
+            <path fill="#f16529" d="M256 480.7l120.4-33.4 28.6-320.2H256z" />
+            <path fill="#ebebeb"
+              d="M256 268.2h-60.5l-4.2-47H256v-45.8H142.7l1.1 12.4 11.4 127.4H256zm0 122.7l-.2.1-50.8-13.7-3.2-36.4H156l6.4 71.7 93.6 26 .2-.1z" />
+            <path fill="#fff"
+              d="M255.8 268.2v45.8h56l-5.3 59.2-50.7 13.7v47.6l93.7-26 .7-7.7 10.8-120.6 1.1-12.2H255.8zm0-92.8v45.8H365.5l.9-10.2 2.1-23.2 1.1-12.4z" />
+          </svg>
+          <span class="lbl">HTML</span>
+          <div class="label-spacer"></div>
+          <div class="ed-toolbar">
+            <button class="ed-btn" id="undo-html" data-tip="Undo (Ctrl+Z / ⌘Z)" onclick="doUndo('html-code')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10" />
+                <path d="M3.51 15a9 9 0 1 0 .49-4" />
+              </svg>
+            </button>
+            <button class="ed-btn" id="redo-html" data-tip="Redo (Ctrl+Y / ⌘⇧Z)" onclick="doRedo('html-code')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10" />
+                <path d="M20.49 15a9 9 0 1 1-.49-4" />
+              </svg>
+            </button>
+            <div class="ed-sep"></div>
+            <button class="ed-btn" id="copy-html" data-tip="Copy (Ctrl+C / ⌘C)" onclick="doCopy('html-code')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="editor-wrap">
+          <textarea id="html-code" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+            placeholder="<-- Write your HTML here -->"></textarea>
+        </div>
+      </div>
+
+      <!-- CSS -->
+      <div class="editor-block" id="block-css">
+        <div class="editor-label label-css">
+          <svg width="16" height="16" viewBox="0 0 512 512">
+            <path fill="#264de4" d="M107.6 470.9L74.3 100h363.5l-33.4 370.8L255.9 512z" />
+            <path fill="#2965f1" d="M256 480.7l120.4-33.4 28.6-320.2H256z" />
+            <path fill="#ebebeb"
+              d="M256 268.2H167l-3-34H256v-44.8H117.9l.8 8.6 7.9 88.2H256zm0 117.2l-.2.1-39.3-10.6-2.5-28.2H169l4.9 55.5 82 22.8.2-.1z" />
+            <path fill="#fff"
+              d="M255.8 268.2v44.8h44.1l-4.2 46.5-39.9 10.8v46.6l82.1-22.8.6-6.8 9.5-106.5 1-10.7H255.8zm0-79.7v44.8h86.3l.7-8 1.6-18.2.9-9.8-89.5-.8z" />
+          </svg>
+          <span class="lbl">CSS</span>
+          <div class="label-spacer"></div>
+          <div class="ed-toolbar">
+            <button class="ed-btn" id="undo-css" data-tip="Undo (Ctrl+Z / ⌘Z)" onclick="doUndo('css-code')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10" />
+                <path d="M3.51 15a9 9 0 1 0 .49-4" />
+              </svg>
+            </button>
+            <button class="ed-btn" id="redo-css" data-tip="Redo (Ctrl+Y / ⌘⇧Z)" onclick="doRedo('css-code')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10" />
+                <path d="M20.49 15a9 9 0 1 1-.49-4" />
+              </svg>
+            </button>
+            <div class="ed-sep"></div>
+            <button class="ed-btn" id="copy-css" data-tip="Copy (Ctrl+C / ⌘C)" onclick="doCopy('css-code')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="editor-wrap">
+          <textarea id="css-code" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+            placeholder="<-- Style here -->"></textarea>
+        </div>
+      </div>
+
+      <!-- JS -->
+      <div class="editor-block" id="block-js">
+        <div class="editor-label label-js">
+          <svg width="16" height="16" viewBox="0 0 630 630">
+            <rect width="630" height="630" fill="#f7df1e" />
+            <path fill="#323330"
+              d="M423.2 492.2c12.7 20.7 29.2 36 58.4 36 24.5 0 40.2-12.3 40.2-29.2 0-20.3-16.1-27.5-43.1-39.3l-14.8-6.4c-42.7-18.2-71.1-41-71.1-89.2 0-44.4 33.8-78.2 86.7-78.2 37.6 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.2-18.2-21.1-25.4-38.1-25.4-17.3 0-28.3 11-28.3 25.4 0 17.8 11 25 36.4 36l14.8 6.3c50.3 21.6 78.7 43.6 78.7 92.9 0 53.2-41.9 82.5-98.1 82.5-55 0-90.5-26.2-107.9-60.5zm-209.1 5.1c9.3 16.5 17.8 30.5 37.9 30.5 19.4 0 31.7-7.6 31.7-37.2V289.3h57.4v202.9c0 61.3-35.9 89.2-88.4 89.2-47.4 0-74.8-24.5-88.8-54.1z" />
+          </svg>
+          <span class="lbl">JavaScript</span>
+          <div class="label-spacer"></div>
+          <div class="ed-toolbar">
+            <button class="ed-btn" id="undo-js" data-tip="Undo (Ctrl+Z / ⌘Z)" onclick="doUndo('js-code')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10" />
+                <path d="M3.51 15a9 9 0 1 0 .49-4" />
+              </svg>
+            </button>
+            <button class="ed-btn" id="redo-js" data-tip="Redo (Ctrl+Y / ⌘⇧Z)" onclick="doRedo('js-code')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10" />
+                <path d="M20.49 15a9 9 0 1 1-.49-4" />
+              </svg>
+            </button>
+            <div class="ed-sep"></div>
+            <button class="ed-btn" id="copy-js" data-tip="Copy (Ctrl+C / ⌘C)" onclick="doCopy('js-code')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="editor-wrap">
+          <textarea id="js-code" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+            placeholder="<--JavaScript here -->"></textarea>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="output-col" id="output-col">
+      <div class="editor-label label-out">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00e5a0" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+        <span class="lbl">Live Output</span>
+      </div>
+      <iframe id="output"></iframe>
+    </div>
+  </div>
+
+  <!-- MOBILE TAB BAR -->
+  <div class="tab-bar">
+    <button class="tab-btn active-tab" data-tab="html" onclick="switchTab('html')">
+      <svg width="11" height="11" viewBox="0 0 512 512">
+        <path fill="#e44d26" d="M107.6 470.9L74.3 100h363.5l-33.4 370.8L255.9 512z" />
+        <path fill="#f16529" d="M256 480.7l120.4-33.4 28.6-320.2H256z" />
+      </svg>HTML
+    </button>
+    <button class="tab-btn" data-tab="css" onclick="switchTab('css')">
+      <svg width="11" height="11" viewBox="0 0 512 512">
+        <path fill="#264de4" d="M107.6 470.9L74.3 100h363.5l-33.4 370.8L255.9 512z" />
+        <path fill="#2965f1" d="M256 480.7l120.4-33.4 28.6-320.2H256z" />
+      </svg>CSS
+    </button>
+    <button class="tab-btn" data-tab="js" onclick="switchTab('js')">
+      <svg width="11" height="11" viewBox="0 0 630 630">
+        <rect width="630" height="630" fill="#f7df1e" />
+      </svg>JS
+    </button>
+    <button class="tab-btn" data-tab="out" onclick="switchTab('out')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>Output
+    </button>
+  </div>
+
+  <!-- FULLSCREEN -->
+  <div id="fs-overlay">
+    <div class="fs-bar">
+      <div class="fs-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e5a0" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        FULL PREVIEW
+      </div>
+      <button id="btn-close-fs" onclick="closeFS()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"
+          stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <iframe id="fs-frame"></iframe>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast"></div>
+
+  <script src="./app.js"></script>
+</body>
+
+</html>
